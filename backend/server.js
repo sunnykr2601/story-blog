@@ -1,21 +1,17 @@
+
+const dns = require("node:dns");
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+require("dotenv").config();
 const express=require("express");
-
+const mongoose=require("mongoose");
 const app=express();
-
-app.use(express.json());
-
-app.get("/",(req, res)=>{
-res.send("home page");
+mongoose.connect(process.env.MONGODB_URI)
+.then(()=>{
+    console.log("mongoDB connected");
+})
+.catch((err)=>{
+    console.log(err);
 });
-app.delete("/user",(req,res)=>{
-    const name=req.body.name;
-    const age=req.body.age;
-    const city=req.body.city;
-    res.send("user deleted"
-    );
-});
-
-
-app.listen(5000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("server started");
 });
