@@ -1,8 +1,15 @@
 const Story=require("../models/story");
+
 const createStory =async(req,res) => {
     try{
+        const{title,content,author}=req.body;
+        if(!title || !content||!author){
+            return res.status(400).json({
+                message:"title,content and author are required"
+            });
+        }
         const story=await Story.create(req.body);
-        res.status(201).json({
+        return res.status(201).json({
             messege:"story created successfully",
             story,
 
