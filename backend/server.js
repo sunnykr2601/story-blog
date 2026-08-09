@@ -5,13 +5,15 @@ require("dotenv").config();
 const express=require("express");
 const mongoose=require("mongoose");
 
-const storyRoutes=require("./routes/storyRoutes");
-const loggerMiddleware=require("./middleware/loggerMiddleware");
+const storyRoutes = require("./routes/storyRoutes");
+const loggerMiddleware = require("./middleware/loggerMiddleware");
 const errorMiddleware = require("./middleware/errorMiddleware");
+const authRoutes =require("./routes/authRoutes");
 const app=express();
 app.use(express.json());
 app.use(loggerMiddleware);
 app.use("/api",storyRoutes);
+app.use("/api",authRoutes);
 console.log("errorMiddleware:", typeof errorMiddleware);
 app.use(errorMiddleware);
 mongoose.connect(process.env.MONGODB_URI)
