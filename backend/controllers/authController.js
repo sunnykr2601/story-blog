@@ -2,6 +2,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt=require("jsonwebtoken");
+const { getMe } = require("./userController");
 
 const registerUser = async (req, res, next) => {
     try {
@@ -90,4 +91,4 @@ const loginUser =async(req,res,next)=>{
 };
 
 
-module.exports = { registerUser,loginUser };
+module.exports = { registerUser,loginUser,getMe };

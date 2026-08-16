@@ -1,10 +1,11 @@
 const express = require("express");
 const router =express.Router();
-const{getStories,createStory,updateStory,getStoryById,deleteStory}=require("../controllers/storyController");
+const{getStories,createStory,updateStory,getStoryById,deleteStory,getMyStories}=require("../controllers/storyController");
 const authMiddleware =require("../middleware/authMiddleware");
 router.post("/stories",authMiddleware,createStory);
 router.get("/stories",getStories);
 router.put("/stories/:id",authMiddleware,updateStory);
+router.get("/stories/my", authMiddleware, getMyStories);
 router.get("/stories/:id",getStoryById);
 router.delete("/stories/:id",authMiddleware,deleteStory);
 

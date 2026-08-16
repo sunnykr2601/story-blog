@@ -13,7 +13,7 @@ const app=express();
 app.use(express.json());
 app.use(loggerMiddleware);
 app.use("/api",storyRoutes);
-app.use("/api",authRoutes);
+app.use("/api/auth",authRoutes);
 console.log("errorMiddleware:", typeof errorMiddleware);
 app.use(errorMiddleware);
 mongoose.connect(process.env.MONGODB_URI)
